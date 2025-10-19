@@ -1,0 +1,175 @@
+:root {
+  --mokp-core-bg: #3D3D49;
+  --mokp-core-fg: #cbccce;
+
+  background-color: var(--mokp-core-bg);
+  color: var(--mokp-core-fg);
+
+  font-family: "Roboto Condensed", system-ui, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--mokp-core-bg);
+  color: var(--mokp-core-fg);
+  overflow: hidden;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.mokp-core {
+  display: grid;
+  grid-template-areas:
+    "sideleft topbar sideright"
+    "sideleft main sideright"
+    "botbar botbar botbar";
+  grid-template-columns: 48px 1fr 48px;
+  grid-template-rows: auto 1fr 48px;
+  height: 100vh;
+  width: 100vw;
+}
+
+.mokp-core-topbar {
+  background-color: transparent;
+  grid-area: topbar;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+
+  &-villagers {
+    --mokp-villager-width: 48px;
+    --mokp-villager-bars-width: 4px;
+    text-align: center;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+
+    &-item {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      flex-shrink: 1;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      position: relative;
+      padding: 0;
+      margin: 0;
+      transition: transform 0.2s;
+
+      &:hover {
+        cursor: pointer;
+        transform: translateY(-2px);
+      }
+
+      &:active {
+        opacity: 0.8;
+      }
+
+      &-card {
+        background-color: #232228;
+        border-radius: 4px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 1 / 1;
+        position: relative;
+        width: 100%;
+        max-width: calc(var(--mokp-villager-width) + var(--mokp-villager-bars-width));
+
+        &-health {
+          background-color: #D52F2F;
+          font-size: 0;
+          line-height: 0;
+          flex-basis: 4px;
+          flex-grow: 0;
+          flex-shrink: 0;
+          width: var(--mokp-villager-bars-width);
+          height: 100%;
+        }
+
+        &-avatar {
+          display: flex;
+          flex-basis: 100%;
+          flex-grow: 0;
+          flex-shrink: 1;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      &-name {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+        max-width: var(--mokp-villager-width);
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
+.mokp-core-sideleft {
+  background-color: transparent;
+  grid-area: sideleft;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mokp-core-sideright {
+  background-color: transparent;
+  grid-area: sideright;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mokp-core-main {
+  background-color: transparent;
+  grid-area: main;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.mokp-core-botbar {
+  background-color: #232228;
+  grid-area: botbar;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

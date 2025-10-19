@@ -1,0 +1,56 @@
+{
+  "name": "Kotan",
+  "version": "0.1.0",
+  "description": "Project Kotan.",
+  "keywords": [
+    "kotan"
+  ],
+  "homepage": "https://github.com/mcpronovost/kotan#readme",
+  "bugs": {
+    "url": "https://github.com/mcpronovost/kotan/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcpronovost/kotan.git"
+  },
+  "license": "BSD-3-Clause",
+  "author": "mcpronovost",
+  "type": "commonjs",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "concurrently \"npm:dev:vite\" \"npm:dev:electron\"",
+    "dev:vite": "vite",
+    "dev:electron": "wait-on http://localhost:3000 && cross-env NODE_ENV=development electron electron/main.js",
+    "build": "vite build",
+    "rebuild": "electron-rebuild",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "vite build && electron-forge make",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.4.1",
+    "electron-squirrel-startup": "^1.0.1",
+    "lucide-react": "^0.546.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.10.2",
+    "@electron-forge/maker-deb": "^7.10.2",
+    "@electron-forge/maker-rpm": "^7.10.2",
+    "@electron-forge/maker-squirrel": "^7.10.2",
+    "@electron-forge/maker-zip": "^7.10.2",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.10.2",
+    "@electron-forge/plugin-fuses": "^7.10.2",
+    "@electron/fuses": "^1.8.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "electron": "^38.3.0",
+    "electron-rebuild": "^3.2.9",
+    "sass-embedded": "^1.93.2",
+    "vite": "^7.1.10",
+    "wait-on": "^9.0.1"
+  }
+}
