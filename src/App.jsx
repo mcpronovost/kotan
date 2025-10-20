@@ -20,11 +20,12 @@ function App() {
 
   const handleAddVillager = async () => {
     try {
-      const newVillagerId = await window.database.addVillager("John Doedingerson", 100);
+      const randomHealth = Math.floor(Math.random() * 100) + 1;
+      const newVillagerId = await window.database.addVillager("John Doedingerson", randomHealth);
       const newVillager = {
         id: newVillagerId,
         name: "John Doedingerson",
-        health: 100,
+        health: randomHealth,
         created_at: new Date().toISOString()
       };
       setVillagers([...villagers, newVillager]);
@@ -67,10 +68,13 @@ function App() {
             <li key={villager.id} className="mokp-core-topbar-villagers-item">
               <div className="mokp-core-topbar-villagers-item-card">
                 <div className="mokp-core-topbar-villagers-item-card-health">
-                  <span>{villager.health}%</span>
+                  <span className="mokp-core-topbar-villagers-item-card-health-bar" style={{
+                    backgroundColor: villager.health > 66 ? "#1e4531" : villager.health > 33 ? "#45401e" : "#542d2d",
+                    height: `${villager.health}%`
+                  }}>{villager.health}%</span>
                 </div>
                 <div className="mokp-core-topbar-villagers-item-card-avatar">
-                  <User color="#3d3d49" size={24} />
+                  <User color="#474747" size={24} />
                 </div>
               </div>
               <div className="mokp-core-topbar-villagers-item-name">
@@ -80,13 +84,19 @@ function App() {
           ))}
         </ul>
       </div>
-      <div className="mokp-core-sideleft">left bar</div>
+      <div className="mokp-core-sideleft">
+        <div className="mokp-core-sideright-content">version 0.1.0-alpha</div>
+        <div className="mokp-core-sideright-content">version 0.1.0-alpha</div>
+      </div>
       <div className="mokp-core-main">
         <button onClick={handleAddVillager}>Add Villager</button>
         <button onClick={handleRemoveVillager}>Remove Villager</button>
         <button onClick={handleResetVillagers}>Reset</button>
       </div>
-      <div className="mokp-core-sideright">right bar</div>
+      <div className="mokp-core-sideright">
+        <div className="mokp-core-sideright-content">version 0.1.0-alpha</div>
+        <div className="mokp-core-sideright-content">version 0.1.0-alpha</div>
+      </div>
       <div className="mokp-core-botbar">bottom bar</div>
     </div>
   );

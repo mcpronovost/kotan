@@ -1,6 +1,7 @@
 :root {
-  --mokp-core-bg: #3D3D49;
-  --mokp-core-fg: #cbccce;
+  --mokp-core-bg: #181818;
+  --mokp-core-fg: #E5DAD0;
+  --mokp-card-bg: #202020;
 
   background-color: var(--mokp-core-bg);
   color: var(--mokp-core-fg);
@@ -14,6 +15,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  user-select: none;
 }
 
 body {
@@ -33,7 +35,7 @@ body {
     "sideleft topbar sideright"
     "sideleft main sideright"
     "botbar botbar botbar";
-  grid-template-columns: 48px 1fr 48px;
+  grid-template-columns: 120px 1fr 120px;
   grid-template-rows: auto 1fr 48px;
   height: 100vh;
   width: 100vw;
@@ -46,7 +48,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 4px;
+  padding: 8px 4px;
 
   &-villagers {
     --mokp-villager-width: 48px;
@@ -55,7 +57,7 @@ body {
     list-style: none;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 8px;
@@ -67,8 +69,9 @@ body {
     &-item {
       text-align: center;
       display: flex;
+      flex-basis: calc(var(--mokp-villager-width) + var(--mokp-villager-bars-width));
       flex-direction: column;
-      flex-grow: 1;
+      flex-grow: 0;
       flex-shrink: 1;
       align-items: center;
       justify-content: center;
@@ -88,7 +91,7 @@ body {
       }
 
       &-card {
-        background-color: #232228;
+        background-color: var(--mokp-card-bg);
         border-radius: 4px;
         overflow: hidden;
         display: flex;
@@ -101,14 +104,27 @@ body {
         max-width: calc(var(--mokp-villager-width) + var(--mokp-villager-bars-width));
 
         &-health {
-          background-color: #D52F2F;
+          background-color: #292929;
           font-size: 0;
           line-height: 0;
-          flex-basis: 4px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-end;
+          flex-basis: var(--mokp-villager-bars-width);
           flex-grow: 0;
           flex-shrink: 0;
           width: var(--mokp-villager-bars-width);
           height: 100%;
+
+          &-bar {
+            background-color: #2d543b;
+            font-size: 0;
+            line-height: 0;
+            display: block;
+            width: var(--mokp-villager-bars-width);
+            height: 100%;
+          }
         }
 
         &-avatar {
@@ -122,17 +138,23 @@ body {
       }
 
       &-name {
-        font-size: 12px;
+        font-size: 10px;
         font-weight: 400;
         line-height: 1.2;
         text-align: center;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
         width: 100%;
         max-width: var(--mokp-villager-width);
         margin: 0;
         padding: 0;
+
+        > span {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          display: block;
+          width: 100%;
+          max-width: 100%;
+        }
       }
     }
   }
@@ -145,6 +167,17 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
+  &-content {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: right;
+    width: 100%;
+    max-width: 100%;
+    padding: 8px;
+    margin: 0;
+  }
 }
 
 .mokp-core-sideright {
@@ -154,6 +187,17 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
+  &-content {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: left;
+    width: 100%;
+    max-width: 100%;
+    padding: 8px;
+    margin: 0;
+  }
 }
 
 .mokp-core-main {
@@ -166,7 +210,7 @@ body {
 }
 
 .mokp-core-botbar {
-  background-color: #232228;
+  background-color: var(--mokp-card-bg);
   grid-area: botbar;
   display: flex;
   flex-direction: row;
