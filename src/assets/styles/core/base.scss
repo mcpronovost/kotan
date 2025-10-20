@@ -29,6 +29,28 @@ body {
   margin: 0;
 }
 
+button {
+  background-color: var(--mokp-card-bg);
+  border-radius: 4px;
+  border: none;
+  color: var(--mokp-core-fg);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  padding: 8px 16px;
+
+  &:hover {
+    background-color: #303030;
+  }
+
+  &:active {
+    background-color: #202020;
+  }
+}
+
 .mokp-core {
   display: grid;
   grid-template-areas:
