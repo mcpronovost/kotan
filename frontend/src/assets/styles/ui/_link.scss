@@ -1,0 +1,23 @@
+.mokp-link {
+    transition: color 0.3s, opacity 0.3s, gap 0.3s;
+  
+    &.mokp-disabled {
+      pointer-events: none;
+      cursor: default;
+      opacity: 0.6;
+    }
+  
+    &-hover {
+      &-accent {
+        &:hover {
+          color: var(--oyk-c-accent);
+        }
+      }
+  
+      &-opacity-6 {
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+    }
+  }

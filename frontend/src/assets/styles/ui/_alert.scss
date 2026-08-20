@@ -1,0 +1,114 @@
+.mokp-alert {
+  background-color: var(--mokp-card-bg-above);
+  border: 1px solid var(--mokp-card-divider);
+  border-radius: var(--mokp-radius);
+  color: var(--mokp-card-bg);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8px 12px;
+  margin: 8px 0;
+
+  &-icon {
+    color: var(--mokp-card-fg);
+    line-height: 0;
+    flex: 0 0 32px;
+    width: 32px;
+  }
+
+  &-content {
+    color: var(--mokp-card-fg);
+  }
+
+  &-title {
+    font-size: 1rem;
+    line-height: 1.5;
+    flex: 1 1 100%;
+  }
+
+  &-message {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    flex: 1 1 100%;
+  }
+
+  &.mokp-variant {
+    &-default {
+      background-color: var(--mokp-card-bg-above);
+      border-color: var(--mokp-card-divider);
+      color: var(--mokp-card-fg-muted);
+
+      .mokp-alert-icon,
+      .mokp-alert-content {
+        color: var(--mokp-card-fg);
+      }
+
+      &.mokp-ghost {
+        border-color: var(--mokp-card-fg-faint);
+      }
+    }
+
+    &-success {
+      background-color: var(--mokp-c-success-muted);
+      border-color: var(--mokp-c-success-subtle);
+      color: var(--mokp-c-success);
+
+      .mokp-alert-icon,
+      .mokp-alert-content {
+        color: var(--mokp-c-success);
+      }
+    }
+
+    &-error {
+      background-color: var(--mokp-c-error-muted);
+      border-color: var(--mokp-c-error-subtle);
+      color: var(--mokp-c-error);
+
+      .mokp-alert-icon,
+      .mokp-alert-content {
+        color: var(--mokp-c-error);
+      }
+    }
+
+    &-info {
+      background-color: var(--mokp-c-info-muted);
+      border-color: var(--mokp-c-info-subtle);
+      color: var(--mokp-c-info);
+
+      .mokp-alert-icon,
+      .mokp-alert-content {
+        color: var(--mokp-c-info);
+      }
+    }
+
+    &-warning {
+      background-color: var(--mokp-c-warning-muted);
+      border-color: var(--mokp-c-warning-subtle);
+      color: var(--mokp-c-warning);
+
+      .mokp-alert-icon,
+      .mokp-alert-content {
+        color: var(--mokp-c-warning);
+      }
+    }
+
+    &-express {
+      background-color: var(--mokp-c-express-muted);
+      border-color: var(--mokp-c-express-subtle);
+      color: var(--mokp-c-express);
+
+      .mokp-alert-icon,
+      .mokp-alert-content {
+        color: var(--mokp-c-express);
+      }
+    }
+  }
+
+  &.mokp-ghost {
+    background-color: color-mix(in srgb, currentColor 8%, transparent 100%);
+    border-style: dashed;
+    border-width: 1px;
+  }
+}

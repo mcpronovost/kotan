@@ -1,0 +1,44 @@
+:root {
+  --mokp-c-accent: #e9b75a;
+  --mokp-c-accent-hover: #f0c875;
+  --mokp-c-accent-subtle: #806b3d;
+  --mokp-c-accent-muted: #403721;
+  --mokp-c-accent-faint: #302a1d;
+  --mokp-c-success: #79a878;
+  --mokp-c-success-hover: #8fbe8b;
+  --mokp-c-success-subtle: #405a45;
+  --mokp-c-success-muted: #263c2c;
+  --mokp-c-error: #d86c68;
+  --mokp-c-error-hover: #e57d77;
+  --mokp-c-error-subtle: #693735;
+  --mokp-c-error-muted: #4b2c2c;
+  --mokp-c-info: #7195b8;
+  --mokp-c-info-hover: #8aa9c8;
+  --mokp-c-info-subtle: #405265;
+  --mokp-c-info-muted: #27313b;
+  --mokp-c-warning: #cd7b5d;
+  --mokp-c-warning-hover: #e18e70;
+  --mokp-c-warning-subtle: #895744;
+  --mokp-c-warning-muted: #4d3329;
+  --mokp-c-express: #9a82b5;
+  --mokp-c-express-hover: #ac93c7;
+  --mokp-c-express-subtle: #50445e;
+  --mokp-c-express-muted: #3c3347;
+
+  --mokp-core-bg: #1a1915;
+  --mokp-core-fg: #f3e8d3;
+  --mokp-core-fg-subtle: #8c8576;
+  --mokp-core-fg-muted: #57534a;
+  --mokp-core-divider: #2A2722;
+
+  --mokp-card-bg: #201f1b;
+  --mokp-card-bg-above: #23211d;
+  --mokp-card-bg-hover: #302d26;
+  --mokp-card-divider: #2a2720;
+  --mokp-card-fg: #e6e1d1;
+  --mokp-card-fg-subtle: #aaa495;
+  --mokp-card-fg-muted: #777267;
+  --mokp-card-fg-faint: #504d46;
+
+  --mokp-radius: 6px;
+}

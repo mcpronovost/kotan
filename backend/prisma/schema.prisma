@@ -1,0 +1,90 @@
+// ============================================================
+// Kotan — PBBG Survival/Colony — schema.prisma
+// https://github.com/mcpronovost/kotan
+// ============================================================
+
+generator client {
+    provider = "prisma-client"
+    output = "./db"
+}
+
+datasource db {
+    provider = "postgresql"
+}
+
+// ------------------------------------------------------------
+// Player
+// ------------------------------------------------------------
+
+model User {
+    id          String       @id @default(uuid())
+    username    String       @unique
+    email       String       @unique
+    password    String
+    name        String
+    settlements Settlement[]
+    createdAt   DateTime     @default(now())
+    updatedAt   DateTime     @updatedAt
+
+    @@map("auth_users")
+}
+
+// ------------------------------------------------------------
+// Settlement
+// ------------------------------------------------------------
+
+model Settlement {
+    id        String    @id @default(uuid())
+    owner     User      @relation(fields: [ownerId], references: [id])
+    ownerId   String
+    name      String
+    settlers  Settler[]
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+
+    @@map("game_settlements")
+}
+
+model Settler {
+    id           String     @id @default(uuid())
+    settlement   Settlement @relation(fields: [settlementId], references: [id])
+    settlementId String
+    name         String
+
+    health_pain          Int @default(0)
+    health_infection     Int @default(0)
+    health_digestion     Int @default(100)
+    health_consciousness Int @default(100)
+    health_sanity        Int @default(100)
+
+    capacity_breathing Int @default(100)
+    capacity_eating    Int @default(100)
+    capacity_hearing   Int @default(100)
+    capacity_moving    Int @default(100)
+    capacity_seeing    Int @default(100)
+
+    needs_thirst Int @default(100)
+    needs_hunger Int @default(100)
+    needs_sleep  Int @default(100)
+    needs_rest   Int @default(100)
+    needs_social Int @default(100)
+
+    attr_strength     Int @default(0)
+    attr_constitution Int @default(0)
+    attr_dexterity    Int @default(0)
+    attr_perception   Int @default(0)
+    attr_intelligence Int @default(0)
+    attr_wisdom       Int @default(0)
+
+    // skill_ Int @default(0)
+    skill_digging  Int @default(0) // S
+    skill_logging  Int @default(0) // S
+    skill_mining   Int @default(0) // S
+    skill_foraging Int @default(0) // P
+    skill_fishing  Int @default(0) // W
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("game_settlers")
+}
