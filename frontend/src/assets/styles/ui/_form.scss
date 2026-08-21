@@ -3,7 +3,7 @@
   flex-direction: column;
   flex-wrap: nowrap;
   gap: 24px;
-  margin: 32px 0;
+  margin: 8px 0;
 
   &-field {
     &-label {
@@ -14,13 +14,13 @@
     }
 
     &-required {
-      color: var(--mokp-c-error);
+      color: var(--mokp-c-danger);
       display: inline-block;
       margin: 0 0 0 0.25em;
     }
 
     &-error {
-      color: var(--mokp-c-error);
+      color: var(--mokp-c-danger);
       font-size: 0.876rem;
       display: block;
       padding: 4px 0 0;
@@ -28,6 +28,7 @@
 
     &-helptext {
       color: var(--mokp-card-fg-muted);
+      font-family: "Barlow", sans-serif;
       font-size: 0.876rem;
       display: block;
       padding: 4px 0 0;
@@ -47,11 +48,20 @@
       justify-content: flex-start;
 
       &.mokp-invalid {
-        box-shadow: 0 0 2px 1px var(--mokp-c-error-subtle);
-        outline: 1px dashed var(--mokp-c-error);
+        box-shadow: 0 0 2px 1px var(--mokp-c-danger-subtle);
+        outline: 1px dashed var(--mokp-c-danger);
+      }
+
+      &.mokp-unbox {
+        border-color: transparent;
+
+        &.mokp-invalid {
+          padding: 6px;
+        }
       }
 
       &-prepend {
+        background-color: var(--mokp-card-bg-above);
         border-right: 1px solid var(--mokp-card-divider);
         color: var(--mokp-card-fg-subtle);
         display: flex;
@@ -61,6 +71,7 @@
       }
 
       &-append {
+        background-color: var(--mokp-card-bg-above);
         border-left: 1px solid var(--mokp-card-divider);
         color: var(--mokp-card-fg-subtle);
         display: flex;
@@ -85,7 +96,9 @@
         flex: 1 1 100%;
       }
 
-      input {
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
         width: 100%;
       }
     }

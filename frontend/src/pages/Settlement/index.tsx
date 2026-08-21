@@ -732,7 +732,7 @@ export default function MokpSettlement() {
             <section>
               <MokpAlert
                 ghost
-                variant="error"
+                variant="danger"
                 title="Sasha is injured"
                 message="Take care to prevent loss."
                 icon={<IconDroplet />}

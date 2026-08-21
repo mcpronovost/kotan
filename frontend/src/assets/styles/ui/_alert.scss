@@ -61,14 +61,14 @@
       }
     }
 
-    &-error {
-      background-color: var(--mokp-c-error-muted);
-      border-color: var(--mokp-c-error-subtle);
-      color: var(--mokp-c-error);
+    &-danger {
+      background-color: var(--mokp-c-danger-muted);
+      border-color: var(--mokp-c-danger-subtle);
+      color: var(--mokp-c-danger);
 
       .mokp-alert-icon,
       .mokp-alert-content {
-        color: var(--mokp-c-error);
+        color: var(--mokp-c-danger);
       }
     }
 

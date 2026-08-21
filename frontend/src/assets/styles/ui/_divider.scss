@@ -1,0 +1,21 @@
+.mokp-divider {
+  color: var(--mokp-card-fg-subtle);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px 0;
+
+  &-label {
+    margin: 0 16px;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    background-color: var(--mokp-card-divider);
+    flex-grow: 1;
+    height: 1px;
+    margin: 0;
+  }
+}

@@ -5,7 +5,7 @@ import { mokpClass } from "@/utils";
 interface TypeUiAlertProps extends React.HTMLAttributes<HTMLElement> {
   title?: string;
   message?: string;
-  variant: "default" | "success" | "error" | "info" | "warning" | "express";
+  variant: "default" | "success" | "danger" | "info" | "warning" | "express";
   ghost: boolean;
   showIcon: boolean;
   icon?: React.ReactNode;
@@ -30,7 +30,7 @@ export default function MokpAlert({
             icon
           ) : variant === "success" ? (
             <IconAlertCircle size={22} />
-          ) : variant === "error" ? (
+          ) : variant === "danger" ? (
             <IconAlertTriangle size={22} />
           ) : variant === "info" ? (
             <IconInfoCircle size={22} />

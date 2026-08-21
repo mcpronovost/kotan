@@ -1,6 +1,6 @@
-import { IconLock, IconTower, IconMap2, IconSwords, IconTrophy, IconAtom2 } from "@tabler/icons-react";
+import { IconUser, IconMail, IconLock, IconUserCircle, IconTower, IconCompass, IconHeartHandshake, IconSwords, IconTrophy, IconAtom2 } from "@tabler/icons-react";
 import { useTranslation } from "@/services/translation";
-import { MokpCard, MokpForm, MokpGrid } from "@/components/ui";
+import { MokpButton, MokpCard, MokpDivider, MokpForm, MokpGrid } from "@/components/ui";
 import ImgBg from "@/assets/img/bg.webp";
 
 const WHATTODO = [
@@ -14,17 +14,23 @@ const WHATTODO = [
     title: "Explorez le monde",
     content: "Parcourez des territoires, découvrez des ressources et affrontez les dangers qui vous guettent.",
     colour: "success",
-    Icon: IconMap2,
+    Icon: IconCompass,
   },
   {
-    title: "Alliez-vous ou combattez",
-    content: "Rejoignez une guilde, négociez avec d'autres joueurs ou imposez votre domination.",
-    colour: "error",
+    title: "Combattez les menaces",
+    content: "Défendez votre peuple ou imposez votre domination.",
+    colour: "danger",
     Icon: IconSwords,
   },
   {
+    title: "Alliez-vous aux autres",
+    content: "Rejoignez une guilde, négociez avec d'autres joueurs et augmentez votre influence.",
+    colour: "info",
+    Icon: IconHeartHandshake,
+  },
+  {
     title: "Progressez et soyez reconnu",
-    content: "Accomplissez des quêtes, gagnez des succès et grimpez dans les classements.",
+    content: "Accomplissez des quêtes, gagnez des succès et grimpez dans le classement.",
     colour: "express",
     Icon: IconTrophy,
   },
@@ -46,7 +52,7 @@ export default function MokpAuthRegister() {
                   name="username"
                   label={t("Username")}
                   helptext={t("Between 3 and 16 characters.")}
-                  icon={IconAtom2}
+                  icon={IconUser}
                   required
                 />
                 <MokpForm.Field
@@ -54,7 +60,7 @@ export default function MokpAuthRegister() {
                   name="email"
                   label={t("Email")}
                   helptext={t("We'll never share your email.")}
-                  icon={IconSwords}
+                  icon={IconMail}
                   required
                 />
                 <MokpForm.Field
@@ -67,7 +73,7 @@ export default function MokpAuthRegister() {
                 />
                 <MokpForm.Field
                   type="password"
-                  name="password"
+                  name="passwordconfirm"
                   label={t("Confirm Password")}
                   icon={IconLock}
                   required
@@ -76,9 +82,21 @@ export default function MokpAuthRegister() {
                   name="name"
                   label={t("Name")}
                   helptext={t("Public name.")}
-                  icon={IconAtom2}
+                  icon={IconUserCircle}
                   required
                 />
+                <MokpForm.Field
+                  type="checkbox"
+                  name="terms_accepted"
+                  label={t("Terms of Uses and Privacy Policy")}
+                  //hideLabel
+                  required
+                />
+                <div>
+                  <MokpButton label="Create an account" variant="accent" block />
+                  <MokpDivider label="ou" />
+                  <MokpButton label="I already have an account" block />
+                </div>
               </MokpForm>
             </section>
           </MokpCard>

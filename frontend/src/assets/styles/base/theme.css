@@ -9,11 +9,11 @@
   --mokp-c-success-subtle: #405a45;
   --mokp-c-success-muted: #263c2c;
   --mokp-c-success-faint: #232b22;
-  --mokp-c-error: #d86c68;
-  --mokp-c-error-hover: #e57d77;
-  --mokp-c-error-subtle: #693735;
-  --mokp-c-error-muted: #4b2c2c;
-  --mokp-c-error-faint: #362523;
+  --mokp-c-danger: #d86c68;
+  --mokp-c-danger-hover: #e57d77;
+  --mokp-c-danger-subtle: #693735;
+  --mokp-c-danger-muted: #4b2c2c;
+  --mokp-c-danger-faint: #362523;
   --mokp-c-info: #7195b8;
   --mokp-c-info-hover: #8aa9c8;
   --mokp-c-info-subtle: #405265;

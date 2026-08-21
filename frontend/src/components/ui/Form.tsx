@@ -43,7 +43,7 @@ function MokpUiFormField({
 }: TypeUiFormFieldProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [nativeError, setNativeError] = useState<string | undefined>(undefined);
-  const [showPassword, setShowPassword] = useState<boolean>(false)
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const errorMessage = error ?? nativeError;
 
@@ -72,23 +72,44 @@ function MokpUiFormField({
           {required && <span className="mokp-form-field-required">*</span>}
         </label>
       ) : null}
-      <div className={mokpClass("mokp-form-field-input", errorMessage && "mokp-invalid")}>
+      <div
+        className={mokpClass(
+          "mokp-form-field-input",
+          ["checkbox"].includes(type) && "mokp-unbox",
+          errorMessage && "mokp-invalid",
+        )}
+      >
         {IconComponent && (
           <div className="mokp-form-field-input-prepend">
             <IconComponent size={19} />
           </div>
         )}
         <div className="mokp-form-field-input-content">
-          <input
-            ref={inputRef}
-            id={`field-${name}`}
-            name={name}
-            type={(type === "password" && showPassword) ? "text" : type}
-            autoComplete="off"
-            value={value}
-            onChange={(e) => handleChange(e.target.value)}
-            aria-describedby={helptext ? `hint-${name}` : undefined}
-          />
+          {type === "checkbox" ? (
+            <div className="mokp-form-field-input-content-labeled">
+              <input
+                ref={inputRef}
+                id={`field-${name}`}
+                name={name}
+                type={type}
+                checked={value}
+                onChange={(e) => handleChange(e.target.value)}
+                aria-describedby={helptext ? `hint-${name}` : undefined}
+              />
+              <label>{label}</label>
+            </div>
+          ) : (
+            <input
+              ref={inputRef}
+              id={`field-${name}`}
+              name={name}
+              type={type === "password" && showPassword ? "text" : type}
+              autoComplete="off"
+              value={value}
+              onChange={(e) => handleChange(e.target.value)}
+              aria-describedby={helptext ? `hint-${name}` : undefined}
+            />
+          )}
         </div>
         {type === "password" ? (
           <div className="mokp-form-field-input-append mokp-clickable" onClick={() => setShowPassword(!showPassword)}>
