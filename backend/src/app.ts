@@ -6,6 +6,7 @@ import helmet from "helmet";
 import healthRoutes from "./routes/health";
 
 const HTTP_TIMEOUT_MS = 120000;
+const VERSION = process.env.VERSION || "0.1.0";
 
 const app: express.Express = express();
 
@@ -15,12 +16,12 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "https://www.youtube.com"],
-        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        scriptSrc: ["'self'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        fontSrc: ["'self'"],
         imgSrc: ["'self'", "data:", "https:"],
         mediaSrc: ["'self'", "data:", "blob:", "https:"],
-        connectSrc: ["'self'", "wss:", "ws:"],
+        connectSrc: ["'self'"],
         objectSrc: ["'none'"],
         baseUri: ["'self'"],
         formAction: ["'self'"],
@@ -51,17 +52,8 @@ app.use(
     ],
     credentials: true,
     exposedHeaders: [
-      "X-App-Version",
-      "X-App-Commit-Sha",
-      "X-App-Build-Time",
-      "X-Open-Data-Hub-Cache-Version",
-      "X-Workload-ID",
-      "X-Workload-Profile",
+      "X-Mokp-Version",
       "Retry-After",
-      "Surrogate-Key",
-      "Accept-Ranges",
-      "Content-Length",
-      "Content-Range",
     ],
     optionsSuccessStatus: 200, // Support legacy browsers
   }),
@@ -81,6 +73,7 @@ app.use(
 // different user. Specific routes (avatars, manifests, public media) override this
 // with their own explicit Cache-Control headers.
 app.use(["/api/"], (req: Request, res: Response, next: NextFunction) => {
+  res.setHeader("X-Mokp-Version", VERSION);
   if (req.method === "GET" || req.method === "HEAD") {
     res.setHeader("Cache-Control", "no-store");
   }

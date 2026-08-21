@@ -2,16 +2,8 @@ import js from "@eslint/js";
 import tseslint from "@typescript-eslint/eslint-plugin";
 import tsparser from "@typescript-eslint/parser";
 import prettier from "eslint-config-prettier";
-import {
-  commonTypeScriptRules,
-  nodeRuntimeGlobals,
-  testGlobals,
-  typescriptNoUndefOffRule,
-} from "../eslint.shared.js";
 
 const commonGlobals = {
-  ...nodeRuntimeGlobals,
-  ...testGlobals,
   jest: "readonly",
 };
 
@@ -59,8 +51,6 @@ export default [
     },
     rules: {
       ...tseslint.configs.recommended.rules,
-      ...commonTypeScriptRules,
-      ...typescriptNoUndefOffRule,
       "no-console": "off",
       "no-empty": ["error"],
     },
