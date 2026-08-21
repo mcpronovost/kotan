@@ -1,0 +1,93 @@
+.mokp-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 24px;
+  margin: 32px 0;
+
+  &-field {
+    &-label {
+      font-size: 0.9rem;
+      line-height: 1.2;
+      display: block;
+      padding: 0 0 6px;
+    }
+
+    &-required {
+      color: var(--mokp-c-error);
+      display: inline-block;
+      margin: 0 0 0 0.25em;
+    }
+
+    &-error {
+      color: var(--mokp-c-error);
+      font-size: 0.876rem;
+      display: block;
+      padding: 4px 0 0;
+    }
+
+    &-helptext {
+      color: var(--mokp-card-fg-muted);
+      font-size: 0.876rem;
+      display: block;
+      padding: 4px 0 0;
+    }
+
+    &-input {
+      background-color: var(--mokp-card-bg);
+      border: 1px solid var(--mokp-card-divider);
+      border-radius: var(--mokp-radius);
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: flex-start;
+
+      &.mokp-invalid {
+        box-shadow: 0 0 2px 1px var(--mokp-c-error-subtle);
+        outline: 1px dashed var(--mokp-c-error);
+      }
+
+      &-prepend {
+        border-right: 1px solid var(--mokp-card-divider);
+        color: var(--mokp-card-fg-subtle);
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 8px 16px;
+      }
+
+      &-append {
+        border-left: 1px solid var(--mokp-card-divider);
+        color: var(--mokp-card-fg-subtle);
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 8px 16px;
+
+        &.mokp-clickable {
+          cursor: pointer;
+
+          &:hover {
+            color: var(--mokp-card-fg);
+          }
+
+          &:active {
+            color: var(--mokp-card-fg-muted);
+          }
+        }
+      }
+
+      &-content {
+        flex: 1 1 100%;
+      }
+
+      input {
+        width: 100%;
+      }
+    }
+  }
+}

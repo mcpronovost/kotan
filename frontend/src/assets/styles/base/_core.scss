@@ -2,10 +2,10 @@ body {
   background-color: var(--mokp-core-bg); // #0d1117;
   box-sizing: border-box;
   color: var(--mokp-core-fg);
-  font-family: "Barlow", sans-serif;
+  font-family: var(--mokp-font);
   font-size: 16px;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.4;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;

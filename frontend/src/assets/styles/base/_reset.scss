@@ -17,9 +17,9 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Barlow", sans-serif;
+  font-family: var(--mokp-font-title);
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.5;
   margin: 0;
   padding: 0;
@@ -34,7 +34,7 @@ button {
   background: transparent;
   border: none;
   color: inherit;
-  font-family: "Barlow", sans-serif;
+  font-family: var(--mokp-font);
   font-size: 1rem;
   font-weight: 400;
   line-height: 1;
@@ -109,4 +109,22 @@ code {
 
 img {
   max-width: 100%;
+}
+
+input {
+  background: transparent;
+  border: none;
+  border-radius: var(--mokp-radius);
+  outline: none;
+  color: var(--mokp-card-fg-subtle);
+  font-family: var(--mokp-font);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  padding: 4px 8px;
+  margin: 0;
+
+  &:focus-within {
+    color: var(--mokp-card-fg);
+  }
 }

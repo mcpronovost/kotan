@@ -8,22 +8,27 @@
   --mokp-c-success-hover: #8fbe8b;
   --mokp-c-success-subtle: #405a45;
   --mokp-c-success-muted: #263c2c;
+  --mokp-c-success-faint: #232b22;
   --mokp-c-error: #d86c68;
   --mokp-c-error-hover: #e57d77;
   --mokp-c-error-subtle: #693735;
   --mokp-c-error-muted: #4b2c2c;
+  --mokp-c-error-faint: #362523;
   --mokp-c-info: #7195b8;
   --mokp-c-info-hover: #8aa9c8;
   --mokp-c-info-subtle: #405265;
   --mokp-c-info-muted: #27313b;
+  --mokp-c-info-faint: #23282b;
   --mokp-c-warning: #cd7b5d;
   --mokp-c-warning-hover: #e18e70;
   --mokp-c-warning-subtle: #895744;
   --mokp-c-warning-muted: #4d3329;
+  --mokp-c-warning-faint: #342821;
   --mokp-c-express: #9a82b5;
   --mokp-c-express-hover: #ac93c7;
   --mokp-c-express-subtle: #50445e;
   --mokp-c-express-muted: #3c3347;
+  --mokp-c-express-faint: #2f2932;
 
   --mokp-core-bg: #1a1915;
   --mokp-core-fg: #f3e8d3;
@@ -41,4 +46,7 @@
   --mokp-card-fg-faint: #504d46;
 
   --mokp-radius: 6px;
+
+  --mokp-font: "Manrope", sans-serif;
+  --mokp-font-title: "Inter", sans-serif;
 }
