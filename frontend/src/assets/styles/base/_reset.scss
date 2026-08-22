@@ -44,7 +44,7 @@ button {
   padding: 0;
   margin: 0;
 
-  &:not(:disabled):not(.mokp-unclickable):hover {
+  &:not(:disabled):not(.mokp-disabled):not(.mokp-unclickable):hover {
     cursor: pointer;
   }
 }

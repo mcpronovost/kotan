@@ -1,6 +1,20 @@
-import { IconUser, IconMail, IconLock, IconUserCircle, IconTower, IconCompass, IconHeartHandshake, IconSwords, IconTrophy, IconAtom2 } from "@tabler/icons-react";
+import { useState } from "react";
+import {
+  IconUser,
+  IconMail,
+  IconLock,
+  IconUserCircle,
+  IconTower,
+  IconCompass,
+  IconHeartHandshake,
+  IconSwords,
+  IconTrophy,
+  IconAtom2,
+  IconUserPlus,
+  IconLogin2,
+} from "@tabler/icons-react";
 import { useTranslation } from "@/services/translation";
-import { MokpButton, MokpCard, MokpDivider, MokpForm, MokpGrid } from "@/components/ui";
+import { MokpButton, MokpCard, MokpDivider, MokpForm, MokpGrid, MokpLink } from "@/components/ui";
 import ImgBg from "@/assets/img/bg.webp";
 
 const WHATTODO = [
@@ -37,65 +51,134 @@ const WHATTODO = [
 ];
 
 export default function MokpAuthRegister() {
-  const { t } = useTranslation();
+  const { t, tNode } = useTranslation();
+
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    password_confirm: "",
+    email: "",
+    playername: "",
+    terms_accepted: false,
+  });
+
+  const handleChange = (e) => {
+    const { name, value, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: e.target.type === "checkbox" ? checked : value,
+    }));
+
+    /* Clear field-specific error when user starts typing
+    if (hasError?.fields?.[name]) {
+      setHasError((prev) => ({
+        ...prev,
+        fields: {
+          ...prev.fields,
+          [name]: "",
+        },
+      }));
+    }*/
+  };
 
   return (
     <MokpGrid style={{ maxWidth: 1200 }}>
       <MokpGrid.Row>
         <MokpGrid.Col col="55">
           <MokpCard style={{ height: "100%" }}>
-            <h1>Créer un compte</h1>
-            <p style={{ color: "var(--mokp-card-fg-subtle)" }}>Rejoignez Kotan et bâtissez votre colonie.</p>
+            <h1 style={{ fontSize: "1.6rem" }}>{t("Create an account")}</h1>
+            <p style={{ color: "var(--mokp-card-fg-subtle)", margin: "0 0 24px" }}>
+              {t("Join Kotan and build your settlement")}
+            </p>
             <section>
               <MokpForm>
                 <MokpForm.Field
                   name="username"
                   label={t("Username")}
-                  helptext={t("Between 3 and 16 characters.")}
+                  value={formData.username}
+                  helptext={t("Between 3 and 16 characters — letters, numbers and _ only")}
                   icon={IconUser}
-                  required
-                />
-                <MokpForm.Field
-                  type="email"
-                  name="email"
-                  label={t("Email")}
-                  helptext={t("We'll never share your email.")}
-                  icon={IconMail}
-                  required
+                  onChange={handleChange}
                 />
                 <MokpForm.Field
                   type="password"
                   name="password"
                   label={t("Password")}
-                  helptext={t("Atleast 8 characters.")}
+                  value={formData.password}
+                  helplist={[
+                    { label: t("At least 8 characters"), test: (v) => v.length >= 8 },
+                    { label: t("One uppercase letter"), test: (v) => /[A-Z]/.test(v) },
+                    { label: t("One lowercase letter"), test: (v) => /[a-z]/.test(v) },
+                    { label: t("One number"), test: (v) => /[0-9]/.test(v) },
+                    { label: t("One special character"), test: (v) => /[^A-Za-z0-9]/.test(v) },
+                  ]}
                   icon={IconLock}
-                  required
+                  onChange={handleChange}
                 />
                 <MokpForm.Field
                   type="password"
-                  name="passwordconfirm"
+                  name="password_confirm"
                   label={t("Confirm Password")}
+                  value={formData.password_confirm}
+                  helptext={t("Re-enter your password")}
                   icon={IconLock}
-                  required
+                  onChange={handleChange}
                 />
                 <MokpForm.Field
-                  name="name"
-                  label={t("Name")}
-                  helptext={t("Public name.")}
+                  type="email"
+                  name="email"
+                  label={t("Email")}
+                  value={formData.email}
+                  helptext={t("For account recovery — will never be shared")}
+                  icon={IconMail}
+                  onChange={handleChange}
+                />
+                <MokpForm.Field
+                  name="playername"
+                  label={t("Playername")}
+                  value={formData.playername}
+                  helptext={t("This is your public display name — you can update it later")}
                   icon={IconUserCircle}
-                  required
+                  onChange={handleChange}
                 />
                 <MokpForm.Field
                   type="checkbox"
                   name="terms_accepted"
                   label={t("Terms of Uses and Privacy Policy")}
-                  //hideLabel
-                  required
-                />
+                  value={formData.terms_accepted}
+                  hideLabel
+                  onChange={handleChange}
+                >
+                  {tNode(
+                    "I confirm that I am 13 years of age or older and have read, consent and agree to Kotan's {termsLink} and {privacyLink}",
+                    undefined,
+                    {
+                      termsLink: <MokpLink route="terms">{t("Terms of Use")}</MokpLink>,
+                      privacyLink: <MokpLink route="privacy">{t("Privacy Policy")}</MokpLink>,
+                    },
+                  )}
+                </MokpForm.Field>
                 <div>
-                  <MokpButton label="Create an account" variant="accent" block />
-                  <MokpDivider label="ou" />
-                  <MokpButton label="I already have an account" block />
+                  <MokpButton
+                    label={t("Create an account")}
+                    variant="accent"
+                    prependIcon={IconUserPlus}
+                    disabled
+                    block
+                  />
+                  <MokpDivider label={t("or")} />
+                  <MokpButton label={t("I already have an account")} prependIcon={IconLogin2} block />
+                </div>
+                <div>
+                  <p
+                    style={{
+                      color: "var(--mokp-card-fg-muted)",
+                      fontFamily: "Barlow, sans-serif",
+                      fontSize: "0.75rem",
+                    }}
+                  >
+                    {t("Your settlers are already waiting. Let's get started.")}
+                  </p>
                 </div>
               </MokpForm>
             </section>
@@ -109,15 +192,15 @@ export default function MokpAuthRegister() {
               backgroundRepeat: "no-repeat",
               backgroundSize: "contain",
               height: "100%",
-              padding: "48px",
+              padding: "40px",
             }}
           >
             <h2 style={{ color: "var(--mokp-c-accent)" }}>Bienvenue dans Kotan</h2>
             <p style={{ color: "var(--mokp-card-fg-subtle)" }}>
               Un monde à explorer, des ressources à gérer et une colonie à faire prospérer.
             </p>
-            <hr style={{ margin: "16px 0" }} />
-            <section style={{ display: "flex", flexDirection: "column", gap: 24, marginBottom: 32 }}>
+            <MokpDivider style={{ margin: "24px 0" }} />
+            <section style={{ display: "flex", flexDirection: "column", gap: 32, marginBottom: 48 }}>
               {WHATTODO.map((todo, i) => (
                 <article key={i} style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 16 }}>
                   <div>
@@ -136,7 +219,7 @@ export default function MokpAuthRegister() {
                     </span>
                   </div>
                   <div>
-                    <h3>{todo.title}</h3>
+                    <h3 style={{ fontSize: "1rem" }}>{todo.title}</h3>
                     <p style={{ color: "var(--mokp-card-fg-subtle)", fontSize: "0.876rem" }}>{todo.content}</p>
                   </div>
                 </article>
@@ -145,7 +228,7 @@ export default function MokpAuthRegister() {
             <section style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               <article
                 style={{
-                  backgroundColor: "var(--mokp-card-bg-above)",
+                  background: `linear-gradient(to bottom, var(--mokp-card-bg-above), transparent)`,
                   border: "1px solid var(--mokp-card-divider)",
                   borderRadius: "var(--mokp-radius)",
                   display: "flex",
@@ -161,7 +244,7 @@ export default function MokpAuthRegister() {
                   </span>
                 </div>
                 <div>
-                  <h3 style={{ color: "var(--mokp-c-accent)" }}>Votre aventure commence ici</h3>
+                  <h3 style={{ color: "var(--mokp-c-accent)" }}>{t("Your journey starts now")}</h3>
                   <p style={{ color: "var(--mokp-card-fg-subtle)", fontSize: "0.876rem" }}>
                     Chaque décision compte. Le futur de votre peuple dépend de vous.
                   </p>

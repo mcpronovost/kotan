@@ -15,12 +15,16 @@
   position: relative;
   padding: 12px 16px;
 
-  &:hover {
+  &:hover:not(.mokp-disabled) {
     opacity: 0.9;
   }
 
-  &:active {
+  &:active:not(.mokp-disabled) {
     transform: scale(0.96);
+  }
+
+  &.mokp-disabled {
+    opacity: 0.5;
   }
 
   &-content {
@@ -31,6 +35,11 @@
     gap: 8px;
     max-width: 100%;
     position: relative;
+
+    &-icon {
+      display: inline-block;
+      height: 19px;
+    }
   }
 
   &-loading {

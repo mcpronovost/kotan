@@ -1,7 +1,8 @@
 import type { ButtonHTMLAttributes, MouseEvent, ReactNode } from "react";
+import type { Icon, IconProps } from "@tabler/icons-react";
+import type { TypeRouteParams } from "@/services/router/types";
 import { memo, useCallback, useMemo } from "react";
 import { IconAtom2 } from "@tabler/icons-react";
-import type { TypeRouteParams } from "@/services/router/types";
 import { useRouter } from "@/services/router";
 import { buildRoutePath } from "@/services/router/utils";
 import { mokpClass } from "@/utils";
@@ -13,6 +14,8 @@ interface MokpUiButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   params?: TypeRouteParams;
   type: "button" | "submit" | "reset";
   variant: "default" | "card" | "success" | "danger" | "info" | "warning" | "express";
+  prependIcon?: Icon;
+  appendIcon?: Icon;
   disabled?: boolean;
   clickable?: boolean;
   loading: boolean;
@@ -28,6 +31,8 @@ function MokpUiButton({
   params = {},
   type = "button",
   variant = "default",
+  prependIcon: IconPrependComponent,
+  appendIcon: IconAppendComponent,
   disabled = false,
   clickable = true,
   loading = false,
@@ -66,10 +71,20 @@ function MokpUiButton({
 
   return (
     <button type={type} onClick={handleClick} className={classes} {...props}>
-      <span className="mokp-button-content">
+      <div className="mokp-button-content">
+        {IconPrependComponent && (
+          <div className="mokp-button-content-icon">
+            <IconPrependComponent size={19} />
+          </div>
+        )}
         {label ? <span className="mokp-button-content-label">{label}</span> : null}
         {children}
-      </span>
+        {IconAppendComponent && (
+          <div className="mokp-button-content-icon">
+            <IconAppendComponent size={19} />
+          </div>
+        )}
+      </div>
       {loading ? (
         <span className="mokp-button-loading">
           <span className="mokp-button-loading-icon">

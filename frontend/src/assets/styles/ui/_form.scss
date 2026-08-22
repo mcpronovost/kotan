@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  gap: 24px;
+  gap: 16px;
   margin: 8px 0;
 
   &-field {
@@ -24,6 +24,25 @@
       font-size: 0.876rem;
       display: block;
       padding: 4px 0 0;
+    }
+
+    &-helplist {
+      color: var(--mokp-card-fg-muted);
+      font-family: "Barlow", sans-serif;
+      font-size: 0.876rem;
+      display: block;
+      padding: 4px 0 0;
+
+      > li {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 4px;
+
+        &.mokp-valid {
+          color: var(--mokp-c-success);
+        }
+      }
     }
 
     &-helptext {
@@ -94,6 +113,41 @@
 
       &-content {
         flex: 1 1 100%;
+
+        &-labeled {
+          &-icon {
+            color: var(--mokp-card-fg-subtle);
+            line-height: 1;
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+          }
+
+          input {
+            display: none;
+          }
+
+          label {
+            font-size: 0.875rem;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+
+            .mokp-link {
+              color: var(--mokp-c-accent);
+
+              &:hover {
+                color: var(--mokp-card-fg-subtle);
+              }
+
+              &:active {
+                color: var(--mokp-card-fg-muted);
+              }
+            }
+          }
+        }
       }
 
       input[type="text"],

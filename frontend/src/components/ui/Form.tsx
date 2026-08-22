@@ -1,7 +1,12 @@
 import type { Icon, IconProps } from "@tabler/icons-react";
 import React, { useRef, useState } from "react";
-import { IconEye, IconEyeOff } from "@tabler/icons-react";
+import { IconEye, IconEyeOff, IconSquareRounded, IconSquareRoundedCheck, IconCheck, IconX } from "@tabler/icons-react";
 import { mokpClass } from "@/utils";
+
+interface TypeUiFormFieldChecklistItem {
+  label: string;
+  test: (value: string) => boolean;
+}
 
 interface TypeUiFormProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
@@ -14,10 +19,12 @@ interface TypeUiFormFieldProps extends React.HTMLAttributes<HTMLElement> {
   hideLabel: boolean;
   required: boolean;
   helptext?: string;
+  helplist?: TypeUiFormFieldChecklistItem[];
   icon?: Icon;
   value: string;
   error: string;
   onChange: (value: string) => void;
+  children?: React.ReactNode;
 }
 
 function MokpUiForm({ children, ...props }: TypeUiFormProps) {
@@ -35,10 +42,12 @@ function MokpUiFormField({
   hideLabel = false,
   required = false,
   helptext,
+  helplist,
   icon: IconComponent,
   value,
   error,
   onChange = () => {},
+  children,
   ...props
 }: TypeUiFormFieldProps) {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -93,10 +102,19 @@ function MokpUiFormField({
                 name={name}
                 type={type}
                 checked={value}
-                onChange={(e) => handleChange(e.target.value)}
+                onChange={(e) => handleChange(e)}
                 aria-describedby={helptext ? `hint-${name}` : undefined}
               />
-              <label>{label}</label>
+              <label htmlFor={`field-${name}`}>
+                <span className="mokp-form-field-input-content-labeled-icon">
+                  {value ? (
+                    <IconSquareRoundedCheck size={22} color="var(--mokp-c-accent)" />
+                  ) : (
+                    <IconSquareRounded size={22} />
+                  )}
+                </span>
+                <div>{children}</div>
+              </label>
             </div>
           ) : (
             <input
@@ -106,7 +124,7 @@ function MokpUiFormField({
               type={type === "password" && showPassword ? "text" : type}
               autoComplete="off"
               value={value}
-              onChange={(e) => handleChange(e.target.value)}
+              onChange={(e) => handleChange(e)}
               aria-describedby={helptext ? `hint-${name}` : undefined}
             />
           )}
@@ -121,6 +139,18 @@ function MokpUiFormField({
         <div className="mokp-form-field-error" role="alert">
           <p>{errorMessage}</p>
         </div>
+      ) : helplist ? (
+        <ul className="mokp-form-field-helplist" id={`hint-${name}`}>
+          {helplist.map((rule, i) => {
+            const isValid = value ? rule.test(value) : false;
+            return (
+              <li key={i} className={isValid ? "mokp-valid" : undefined}>
+                {isValid ? <IconCheck size={14} /> : <IconX size={14} />}
+                <span>{rule.label}</span>
+              </li>
+            );
+          })}
+        </ul>
       ) : helptext ? (
         <div className="mokp-form-field-helptext">
           <p id={`hint-${name}`}>{helptext}</p>
