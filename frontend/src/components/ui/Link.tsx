@@ -10,6 +10,7 @@ interface MokpLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   route: string;
   params?: TypeRouteParams;
   disabled?: boolean;
+  blank?: boolean;
   colorHover?: string;
   className?: string;
 }
@@ -20,6 +21,7 @@ function MokpLink({
   params = {},
   disabled = false,
   block = false,
+  blank = false,
   colorHover,
   className = "",
   ...props
@@ -33,8 +35,10 @@ function MokpLink({
 
   const handleClick = useCallback(
     (e: MouseEvent<HTMLAnchorElement>) => {
-      e.preventDefault();
-      if (!disabled) {
+      if (!blank) {
+        e.preventDefault();
+      }
+      if (!disabled && !blank) {
         n(route, params, lang);
       }
     },
@@ -47,7 +51,7 @@ function MokpLink({
   );
 
   return (
-    <a href={href} onClick={handleClick} className={classes} {...props}>
+    <a href={href} target={blank ? "_blank" : "_self"} onClick={handleClick} className={classes} {...props}>
       {children}
     </a>
   );

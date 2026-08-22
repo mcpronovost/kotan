@@ -1,0 +1,27 @@
+.mokp-heading {
+  padding: 0;
+  margin: 16px 0 24px;
+
+  &-content {
+
+    &::after {
+      content: "";
+      background-color: var(--mokp-c-accent);
+      display: block;
+      width: 48px;
+      height: 2px;
+      margin: 12px 0 0;
+    }
+
+    &-title {
+      font-family: var(--mokp-font-title);
+      font-size: 2.4rem;
+      font-weight: 200;
+      line-height: 1.2;
+      letter-spacing: 0.05em;
+      word-break: break-word;
+      padding: 0;
+      margin: 0;
+    }
+  }
+}

@@ -77,9 +77,9 @@ export function RouterProvider({ children }: TypeRouterProviderProps) {
   }, [lang, route]);
 
   const changePageTitle = useCallback((title?: string) => {
-    const universeName = "Oykus";
-    if (title) return (window.document.title = `${title} | ${universeName}`);
-    return (window.document.title = universeName);
+    const appName = "Kotan";
+    if (title) return (window.document.title = `${title} | ${appName}`);
+    return (window.document.title = appName);
   }, []);
 
   useEffect(() => {

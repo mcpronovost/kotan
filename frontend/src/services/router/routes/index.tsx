@@ -35,6 +35,14 @@ export const ROUTES: TypeRoute[] = [
     },
   },
   {
+    name: "termsofuse",
+    component: React.lazy(() => import("../../../pages/Legals/TermsOfUse")),
+    paths: {
+      fr: "conditions-d-utilisation",
+      en: "temrs-of-use",
+    },
+  },
+  {
     name: "404",
     component: React.lazy(() => import("../../../pages/Error404")),
     paths: {

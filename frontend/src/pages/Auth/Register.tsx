@@ -153,8 +153,8 @@ export default function MokpAuthRegister() {
                     "I confirm that I am 13 years of age or older and have read, consent and agree to Kotan's {termsLink} and {privacyLink}",
                     undefined,
                     {
-                      termsLink: <MokpLink route="terms">{t("Terms of Use")}</MokpLink>,
-                      privacyLink: <MokpLink route="privacy">{t("Privacy Policy")}</MokpLink>,
+                      termsLink: <MokpLink route="termsofuse" blank>{t("terms of use")}</MokpLink>,
+                      privacyLink: <MokpLink route="privacypolicy" blank>{t("privacy policy")}</MokpLink>,
                     },
                   )}
                 </MokpForm.Field>

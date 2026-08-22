@@ -5,4 +5,5 @@ export { default as MokpData } from "./Data";
 export { default as MokpDivider } from "./Divider";
 export { default as MokpForm } from "./Form";
 export { default as MokpGrid } from "./Grid";
+export { default as MokpHeading } from "./Heading";
 export { default as MokpLink } from "./Link";

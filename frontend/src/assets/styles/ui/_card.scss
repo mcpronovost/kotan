@@ -4,4 +4,8 @@
   border-radius: var(--mokp-radius);
   color: var(--mokp-card-fg);
   padding: 16px;
+
+  &+.mokp-card {
+    margin-top: 16px;
+  }
 }
