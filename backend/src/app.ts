@@ -3,6 +3,7 @@ import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 
+import authRoutes from "./routes/auth";
 import healthRoutes from "./routes/health";
 
 const HTTP_TIMEOUT_MS = 120000;
@@ -89,12 +90,15 @@ app.use((req, res, next) => {
 });
 
 // Routes
+app.use("/api/auth", authRoutes);
 app.use("/api/health", healthRoutes);
 
 // 404 fallback for unknown routes
 app.use((req: Request, res: Response) => {
   res.status(404).json({
+    ok: false,
     error: "Not Found",
+    message: "The requested resource was not found",
     path: req.originalUrl,
   });
 });
