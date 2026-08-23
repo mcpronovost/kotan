@@ -25,7 +25,7 @@ function MokpApp() {
         )}
       </main>
       <footer className="mokp-core-footer">
-        Kotan&nbsp;&copy;&nbsp;2026 M-C Pronovost | <MokpLink route="termsofuse">{t("Terms of Use")}</MokpLink> | <MokpLink route="privacypolicy">{t("Privacy Policy")}</MokpLink>
+        &copy;&nbsp;2026 Kotan &nbsp;|&nbsp; <MokpLink route="termsofuse">{t("Terms of Use")}</MokpLink> &nbsp;|&nbsp; <MokpLink route="privacypolicy">{t("Privacy Policy")}</MokpLink>
       </footer>
     </>
   );
