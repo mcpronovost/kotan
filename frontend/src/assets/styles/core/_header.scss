@@ -47,7 +47,8 @@
       border-bottom: 2px solid transparent;
       color: var(--mokp-core-fg-subtle);
       font-weight: 500;
-      padding: 8px 0;
+      padding: 6px 0;
+      margin: 4px 0;
 
       &.mokp-active {
         border-bottom-color: var(--mokp-c-accent);
@@ -64,6 +65,12 @@
     display: flex;
     flex-direction: row;
     gap: 16px;
+  }
+
+  &-auth {
+    display: flex;
+    align-items: center;
+    gap: 24px;
   }
 
   &-space {
