@@ -154,6 +154,14 @@
       input[type="email"],
       input[type="password"] {
         width: 100%;
+
+        &::placeholder {
+          color: var(--mokp-card-fg-faint);
+          font-family: var(--mokp-font);
+          font-size: 0.876rem;
+          line-height: 1;
+          opacity: 1;
+        }
       }
     }
   }

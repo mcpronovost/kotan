@@ -27,3 +27,7 @@ body {
     mix-blend-mode: overlay;
   }
 }
+
+.mokp-core-main {
+  min-height: calc(100vh - 48px);
+}

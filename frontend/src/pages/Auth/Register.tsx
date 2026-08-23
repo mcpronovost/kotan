@@ -18,7 +18,7 @@ import { useAuth } from "@/services/auth";
 import { useRouter } from "@/services/router";
 import { useTranslation } from "@/services/translation";
 import { MokpButton, MokpCard, MokpDivider, MokpForm, MokpGrid, MokpLink } from "@/components/ui";
-import ImgBg from "@/assets/img/bg.webp";
+import ImgBg from "@/assets/img/auth/register_bg.webp";
 
 const WHATTODO = [
   {
@@ -214,7 +214,7 @@ export default function MokpAuthRegister() {
                     block
                   />
                   <MokpDivider label={t("or")} />
-                  <MokpButton label={t("I already have an account")} prependIcon={IconLogin2} block />
+                  <MokpButton label={t("I already have an account")} route="login" prependIcon={IconLogin2} block />
                 </div>
                 <div>
                   <p

@@ -1,6 +1,8 @@
 .mokp-grid {
   width: 100%;
   max-width: 1464px;
+  position: relative;
+  z-index: 2;
   padding: 0 32px;
   margin: 16px auto;
 

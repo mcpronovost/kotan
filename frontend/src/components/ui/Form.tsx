@@ -20,6 +20,7 @@ interface TypeUiFormFieldProps extends React.HTMLAttributes<HTMLElement> {
   name: string;
   label?: string;
   hideLabel: boolean;
+  placeholder?: string;
   required: boolean;
   helptext?: string;
   helplist?: TypeUiFormFieldChecklistItem[];
@@ -58,6 +59,7 @@ function MokpUiFormField({
   name,
   label,
   hideLabel = false,
+  placeholder,
   required = false,
   helptext,
   helplist,
@@ -139,6 +141,7 @@ function MokpUiFormField({
               ref={inputRef}
               id={`field-${name}`}
               name={name}
+              placeholder={placeholder}
               type={type === "password" && showPassword ? "text" : type}
               autoComplete="off"
               value={value}
@@ -157,7 +160,7 @@ function MokpUiFormField({
         <div className="mokp-form-field-error" role="alert">
           <p>{errorMessage}</p>
         </div>
-      ) : helplist ? (
+      ) : (value && helplist) ? (
         <ul className="mokp-form-field-helplist" id={`hint-${name}`}>
           {helplist.map((rule, i) => {
             const isValid = value ? rule.test(value) : false;
