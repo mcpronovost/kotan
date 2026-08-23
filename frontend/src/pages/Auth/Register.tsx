@@ -13,6 +13,9 @@ import {
   IconUserPlus,
   IconLogin2,
 } from "@tabler/icons-react";
+import { api } from "@/services/api";
+import { useAuth } from "@/services/auth";
+import { useRouter } from "@/services/router";
 import { useTranslation } from "@/services/translation";
 import { MokpButton, MokpCard, MokpDivider, MokpForm, MokpGrid, MokpLink } from "@/components/ui";
 import ImgBg from "@/assets/img/bg.webp";
@@ -51,6 +54,7 @@ const WHATTODO = [
 ];
 
 export default function MokpAuthRegister() {
+  const { n } = useRouter();
   const { t, tNode } = useTranslation();
 
   const [formData, setFormData] = useState({
@@ -61,6 +65,8 @@ export default function MokpAuthRegister() {
     playername: "",
     terms_accepted: false,
   });
+  const [isLoadingSubmit, setIsLoadingSubmit] = useState<boolean>(false);
+  const [hasError, setHasError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
@@ -69,7 +75,7 @@ export default function MokpAuthRegister() {
       [name]: e.target.type === "checkbox" ? checked : value,
     }));
 
-    /* Clear field-specific error when user starts typing
+    /* Clear field-specific error when user starts typing */
     if (hasError?.fields?.[name]) {
       setHasError((prev) => ({
         ...prev,
@@ -78,7 +84,32 @@ export default function MokpAuthRegister() {
           [name]: "",
         },
       }));
-    }*/
+    }
+  };
+
+  const handleSubmit = async () => {
+    setIsLoadingSubmit(true);
+    setHasError(null);
+    try {
+      const r = await api.post("/auth/register/", formData);
+
+      if (!r.ok) {
+        console.warn(r);
+        setHasError(r);
+        return;
+      }
+
+      // navigate to login page on registration success
+      n("login");
+    } catch (e) {
+      console.warn(e);
+
+      setHasError({
+        message: t("An error occurred"),
+      });
+    } finally {
+      setIsLoadingSubmit(false);
+    }
   };
 
   return (
@@ -91,11 +122,12 @@ export default function MokpAuthRegister() {
               {t("Join Kotan and build your settlement")}
             </p>
             <section>
-              <MokpForm>
+              <MokpForm onSubmit={handleSubmit} loading={isLoadingSubmit}>
                 <MokpForm.Field
                   name="username"
                   label={t("Username")}
                   value={formData.username}
+                  error={hasError?.fields?.["username"]}
                   helptext={t("Between 3 and 16 characters — letters, numbers and _ only")}
                   icon={IconUser}
                   onChange={handleChange}
@@ -105,6 +137,7 @@ export default function MokpAuthRegister() {
                   name="password"
                   label={t("Password")}
                   value={formData.password}
+                  error={hasError?.fields?.["password"]}
                   helplist={[
                     { label: t("At least 8 characters"), test: (v) => v.length >= 8 },
                     { label: t("One uppercase letter"), test: (v) => /[A-Z]/.test(v) },
@@ -120,6 +153,7 @@ export default function MokpAuthRegister() {
                   name="password_confirm"
                   label={t("Confirm Password")}
                   value={formData.password_confirm}
+                  error={hasError?.fields?.["password_confirm"]}
                   helptext={t("Re-enter your password")}
                   icon={IconLock}
                   onChange={handleChange}
@@ -129,6 +163,7 @@ export default function MokpAuthRegister() {
                   name="email"
                   label={t("Email")}
                   value={formData.email}
+                  error={hasError?.fields?.["email"]}
                   helptext={t("For account recovery — will never be shared")}
                   icon={IconMail}
                   onChange={handleChange}
@@ -137,6 +172,7 @@ export default function MokpAuthRegister() {
                   name="playername"
                   label={t("Playername")}
                   value={formData.playername}
+                  error={hasError?.fields?.["playername"]}
                   helptext={t("This is your public display name — you can update it later")}
                   icon={IconUserCircle}
                   onChange={handleChange}
@@ -146,6 +182,7 @@ export default function MokpAuthRegister() {
                   name="terms_accepted"
                   label={t("Terms of Uses and Privacy Policy")}
                   value={formData.terms_accepted}
+                  error={hasError?.fields?.["terms_accepted"]}
                   hideLabel
                   onChange={handleChange}
                 >
@@ -153,17 +190,27 @@ export default function MokpAuthRegister() {
                     "I confirm that I am 13 years of age or older and have read, consent and agree to Kotan's {termsLink} and {privacyLink}",
                     undefined,
                     {
-                      termsLink: <MokpLink route="termsofuse" blank>{t("terms of use")}</MokpLink>,
-                      privacyLink: <MokpLink route="privacypolicy" blank>{t("privacy policy")}</MokpLink>,
+                      termsLink: (
+                        <MokpLink route="termsofuse" blank>
+                          {t("terms of use")}
+                        </MokpLink>
+                      ),
+                      privacyLink: (
+                        <MokpLink route="privacypolicy" blank>
+                          {t("privacy policy")}
+                        </MokpLink>
+                      ),
                     },
                   )}
                 </MokpForm.Field>
+                {hasError?.message && <MokpForm.Alert errorTitle={t("An error occurred")} error={t(hasError?.message)} />}
                 <div>
                   <MokpButton
+                    type="submit"
                     label={t("Create an account")}
                     variant="accent"
                     prependIcon={IconUserPlus}
-                    disabled
+                    loading={isLoadingSubmit}
                     block
                   />
                   <MokpDivider label={t("or")} />

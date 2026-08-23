@@ -28,5 +28,8 @@
   "Create an account": "Créer un compte",
   "or": "ou",
   "I already have an account": "J'ai déjà un compte",
-  "Your settlers are already waiting. Let's get started.": "Vos colons vous attendent déjà. Commençons."
+  "Your settlers are already waiting. Let's get started.": "Vos colons vous attendent déjà. Commençons.",
+  "An error occurred": "Une erreur s'est produite",
+  "An unexpected error occurred": "Une erreur inattendue s'est produite",
+  "The requested resource was not found": "La ressource demandée est introuvable."
 }
