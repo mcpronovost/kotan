@@ -13,7 +13,7 @@ interface MokpUiButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   route?: string;
   params?: TypeRouteParams;
   type: "button" | "submit" | "reset";
-  variant: "default" | "card" | "success" | "danger" | "info" | "warning" | "express";
+  variant: "default" | "accent" | "card" | "success" | "danger" | "info" | "warning" | "express";
   prependIcon?: Icon;
   appendIcon?: Icon;
   disabled?: boolean;
