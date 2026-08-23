@@ -2,6 +2,7 @@ import type { Icon, IconProps } from "@tabler/icons-react";
 import React, { useRef, useState } from "react";
 import { IconEye, IconEyeOff, IconSquareRounded, IconSquareRoundedCheck, IconCheck, IconX } from "@tabler/icons-react";
 import { mokpClass } from "@/utils";
+import MokpAlert from "./Alert";
 
 interface TypeUiFormFieldChecklistItem {
   label: string;
@@ -9,6 +10,8 @@ interface TypeUiFormFieldChecklistItem {
 }
 
 interface TypeUiFormProps extends React.HTMLAttributes<HTMLElement> {
+  loading: boolean;
+  onSubmit: (value: string) => void;
   children: React.ReactNode;
 }
 
@@ -27,9 +30,24 @@ interface TypeUiFormFieldProps extends React.HTMLAttributes<HTMLElement> {
   children?: React.ReactNode;
 }
 
-function MokpUiForm({ children, ...props }: TypeUiFormProps) {
+interface TypeUiFormAlertProps extends React.HTMLAttributes<HTMLElement> {
+  error?: string;
+  errorTitle?: string;
+  success?: string;
+  successTitle?: string;
+}
+
+function MokpUiForm({ loading, onSubmit, children, ...props }: TypeUiFormProps) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (onSubmit && !loading) {
+      onSubmit(e);
+    }
+  };
+
   return (
-    <form className="mokp-form" {...props}>
+    <form className="mokp-form" onSubmit={handleSubmit} disabled={loading} {...props}>
       {children}
     </form>
   );
@@ -160,8 +178,18 @@ function MokpUiFormField({
   );
 }
 
+function MokpUiFormAlert({ error, errorTitle, success, successTitle, ...props }: TypeUiFormAlertProps) {
+  return (
+    <>
+      {error ? <MokpAlert title={errorTitle} message={error} variant="danger" ghost {...props} /> : null}
+      {success ? <MokpAlert title={successTitle} message={success} variant="success" ghost {...props} /> : null}
+    </>
+  );
+}
+
 namespace MokpUiForm {
   export const Field = MokpUiFormField;
+  export const Alert = MokpUiFormAlert;
 }
 
 export default MokpUiForm;
