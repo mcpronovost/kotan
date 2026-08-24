@@ -1,10 +1,12 @@
 import { IconAtom2, IconBell, IconMoodSmile, IconLogin2, IconUserCircle } from "@tabler/icons-react";
 import { useRouter } from "@/services/router";
+import { useTranslation } from "@/services/translation";
 import { MokpButton, MokpLink } from "@/components/ui";
 import MokpCoreHeaderMenu from "./Menu";
 
 export default function MokpCoreHeader() {
   const { route, n } = useRouter();
+  const { t } = useTranslation();
 
   return (
     <header className="mokp-core-header">
@@ -40,8 +42,8 @@ export default function MokpCoreHeader() {
         </div>
       </div>*/}
       <div className="mokp-core-header-auth">
-        <MokpLink route="login"><IconLogin2 size={20} />Login</MokpLink>
-        <MokpButton label="Register" route="register" variant="accent" />
+        <MokpLink route="login"><IconLogin2 size={20} />{t("Login")}</MokpLink>
+        <MokpButton label={t("Register")} route="register" variant="accent" />
       </div>
     </header>
   );

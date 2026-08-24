@@ -12,7 +12,6 @@ router.post("/register/", async (req: Request, res: Response) => {
     const {
       username,
       password,
-      password_confirm,
       email,
       playername,
       terms_accepted,
@@ -34,10 +33,6 @@ router.post("/register/", async (req: Request, res: Response) => {
 
     if (typeof password !== "string" || password.length < 8) {
       fields.password = "Password must contain at least 8 characters.";
-    }
-
-    if (password !== password_confirm) {
-      fields.password_confirm = "Passwords do not match.";
     }
 
     if (

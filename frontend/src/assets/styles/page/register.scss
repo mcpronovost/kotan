@@ -1,0 +1,38 @@
+.mokp-page-register {
+  &-form {
+    &-referral {
+      &-toggle {
+        color: var(--mokp-card-fg-subtle);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 6px;
+        transition: color 0.3s;
+
+        &:hover {
+          color: var(--mokp-card-fg);
+          cursor: pointer;
+        }
+
+        &:active {
+          color: var(--mokp-card-fg-muted);
+        }
+
+        &-label {
+          font-size: 0.876rem;
+          line-height: 1.4;
+        }
+
+        &-icon {
+          display: inline-block;
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      &-input {
+        margin: 8px 0 0;
+      }
+    }
+  }
+}

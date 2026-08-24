@@ -16,7 +16,8 @@
     content: "";
     background:
       linear-gradient(to bottom, var(--mokp-core-bg) 0%, transparent 18%, transparent 82%, var(--mokp-core-bg) 100%),
-      linear-gradient(to left, var(--mokp-core-bg) 0%, var(--mokp-core-bg) 50%, transparent 82%, transparent 0%);
+      linear-gradient(to left, var(--mokp-core-bg) 0%, var(--mokp-core-bg) 50%, transparent 66%, transparent 100%),
+      rgba(26, 25, 21, 0.5);
     position: absolute;
     inset: 0;
     pointer-events: none;
