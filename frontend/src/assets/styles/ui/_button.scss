@@ -29,12 +29,16 @@
 
   &-content {
     text-overflow: ellipsis;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     max-width: 100%;
     position: relative;
+
+    &-label {
+      padding: 2px 0;
+    }
 
     &-icon {
       display: inline-block;
@@ -87,6 +91,30 @@
       --mokp-current-bg: var(--mokp-c-danger-faint);
       --mokp-current-fg: var(--mokp-c-danger);
       --mokp-current-divider: var(--mokp-c-danger-muted);
+    }
+
+    &-success {
+      --mokp-current-bg: var(--mokp-c-success-faint);
+      --mokp-current-fg: var(--mokp-c-success);
+      --mokp-current-divider: var(--mokp-c-success-muted);
+    }
+
+    &-info {
+      --mokp-current-bg: var(--mokp-c-info-faint);
+      --mokp-current-fg: var(--mokp-c-info);
+      --mokp-current-divider: var(--mokp-c-info-muted);
+    }
+
+    &-warning {
+      --mokp-current-bg: var(--mokp-c-warning-faint);
+      --mokp-current-fg: var(--mokp-c-warning);
+      --mokp-current-divider: var(--mokp-c-warning-muted);
+    }
+
+    &-express {
+      --mokp-current-bg: var(--mokp-c-express-faint);
+      --mokp-current-fg: var(--mokp-c-express);
+      --mokp-current-divider: var(--mokp-c-express-muted);
     }
   }
 

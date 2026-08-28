@@ -85,7 +85,7 @@ hr {
 }
 
 code {
-  background-color: var(--mokp-card-bg);
+  background-color: var(--mokp-card-bg-hover);
   border-radius: var(--mokp-radius);
   color: var(--mokp-card-fg);
   font-family: "Google Sans Code", monospace;
@@ -93,7 +93,7 @@ code {
   font-weight: 400;
   line-height: 2;
   white-space: pre-wrap;
-  padding: 16px;
+  padding: 4px 8px;
 
   &.full {
     display: block;

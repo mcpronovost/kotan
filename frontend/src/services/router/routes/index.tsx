@@ -43,6 +43,14 @@ export const ROUTES: TypeRoute[] = [
     },
   },
   {
+    name: "dev-components",
+    component: React.lazy(() => import("../../../pages/Dev/Components")),
+    paths: {
+      fr: "dev/components",
+      en: "dev/components",
+    },
+  },
+  {
     name: "termsofuse",
     component: React.lazy(() => import("../../../pages/Legals/TermsOfUse")),
     paths: {
